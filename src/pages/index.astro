@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import bookCover from '../assets/images/book-cover.png';
 import riverScene from '../assets/images/raccoon-squeaks-river.jpeg';
+import amazonLogo from '../assets/images/amazon-logo.png';
 
 const amazonUrl =
   'https://www.amazon.com/Rusty-Raccoon-Scared-Michelle-Trotta/dp/B0CJ44D6NK/ref=tmm_pap_swatch_0?_encoding=UTF8&qid=1695085985&sr=8-1';
@@ -24,9 +25,31 @@ const amazonUrl =
     <div class="wrap hero-inner">
       <div class="hero-copy">
         <h1>Rusty the Raccoon is Scared of the Dark</h1>
-        <a class="btn btn-amber" href={amazonUrl} target="_blank" rel="noreferrer noopener">
-          Click here to get your copy!
-        </a>
+        <div class="hero-cta">
+          <p class="hero-cta-text">Click here to get your copy!</p>
+          <svg
+            class="hero-cta-arrow"
+            aria-hidden="true"
+            viewBox="0 0 48 44"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M10 4 C 10 22, 16 30, 34 32" />
+            <path d="M26 24 L 35 32.5 L 25 38" />
+          </svg>
+          <a
+            class="amazon-link"
+            href={amazonUrl}
+            target="_blank"
+            rel="noreferrer noopener"
+            aria-label="Buy Rusty the Raccoon is Scared of the Dark on Amazon"
+          >
+            <Image src={amazonLogo} alt="Available on Amazon" width={76} height={76} />
+          </a>
+        </div>
       </div>
       <div class="hero-art">
         <Image src={bookCover} alt="Rusty the Raccoon is Scared of the Dark — book cover" width={480} height={483} priority />
@@ -59,6 +82,50 @@ const amazonUrl =
     gap: 2.5rem;
     align-items: center;
     padding-block: clamp(3rem, 8vw, 5.5rem);
+  }
+
+  .hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    flex-wrap: wrap;
+    margin-top: 1.6rem;
+  }
+
+  .hero-cta-text {
+    font-family: var(--font-script);
+    font-weight: 600;
+    font-size: 1.9rem;
+    line-height: 1.1;
+    color: var(--color-cream-soft);
+    margin: 0;
+    flex-basis: 100%;
+  }
+
+  .hero-cta-arrow {
+    width: 44px;
+    height: 40px;
+    color: var(--color-cream-soft);
+    opacity: 0.9;
+    margin-left: 1.6rem;
+  }
+
+  .amazon-link {
+    display: inline-block;
+    line-height: 0;
+    border-radius: var(--radius-sm);
+    box-shadow: 0 10px 26px -10px rgba(0, 0, 0, 0.55);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .amazon-link :global(img) {
+    border-radius: var(--radius-sm);
+    display: block;
+  }
+
+  .amazon-link:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 16px 32px -12px rgba(0, 0, 0, 0.6);
   }
 
   .hero-art {

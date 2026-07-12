@@ -13,27 +13,34 @@ const navItems = [
 ];
 
 const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+
+const linkFor = (item: (typeof navItems)[number]) => {
+  const itemPath = item.href.replace(/\/$/, '') || '/';
+  return { ...item, isActive: itemPath === currentPath };
+};
 ---
 
 <header class="site-header">
   <div class="wrap header-inner">
     <a href="/" class="brand">
-      <Image src={raccoonLogo} alt="" width={52} height={52} loading="eager" />
       <span class="brand-text">
-        <span class="brand-title">Rusty the Raccoon</span>
-        <span class="brand-byline">by Michelle Trotta</span>
+        <span class="brand-title">Rusty the Raccoon is<br />Scared of the Dark</span>
+        <span class="brand-byline">Michelle Trotta</span>
+      </span>
+      <span class="peek-rusty">
+        <Image src={raccoonLogo} alt="" width={380} height={563} loading="eager" />
       </span>
     </a>
-    <nav class="site-nav" aria-label="Primary">
+
+    <nav class="site-nav desktop-nav" aria-label="Primary">
       <ul>
         {
           navItems.map((item) => {
-            const itemPath = item.href.replace(/\/$/, '') || '/';
-            const isActive = itemPath === currentPath;
+            const { href, label, isActive } = linkFor(item);
             return (
               <li>
-                <a href={item.href} aria-current={isActive ? 'page' : undefined}>
-                  {item.label}
+                <a href={href} aria-current={isActive ? 'page' : undefined}>
+                  {label}
                 </a>
               </li>
             );
@@ -41,71 +48,114 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
         }
       </ul>
     </nav>
+
+    <nav class="site-nav mobile-nav" aria-label="Primary">
+      <details>
+        <summary aria-label="Menu">
+          <span class="burger" aria-hidden="true"><span></span><span></span><span></span></span>
+          <span class="burger-label">Menu</span>
+        </summary>
+        <ul>
+          {
+            navItems.map((item) => {
+              const { href, label, isActive } = linkFor(item);
+              return (
+                <li>
+                  <a href={href} aria-current={isActive ? 'page' : undefined}>
+                    {label}
+                  </a>
+                </li>
+              );
+            })
+          }
+        </ul>
+      </details>
+    </nav>
   </div>
 </header>
 
 <style>
+  /* The header clips the oversized Rusty art at its bottom edge so he
+     reads as peeking over the fold — same trick as the original site. */
   .site-header {
     background: var(--color-cream);
     border-bottom: 1px solid rgba(20, 76, 83, 0.1);
-    position: sticky;
-    top: 0;
+    position: relative;
+    overflow: hidden;
     z-index: 40;
   }
 
   .header-inner {
     display: flex;
-    flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
-    gap: 1rem;
-    padding-block: 0.85rem;
+    gap: 1.5rem;
+    padding-top: 1.4rem;
   }
 
   .brand {
     display: flex;
-    align-items: center;
-    gap: 0.75rem;
+    flex-direction: column;
     text-decoration: none;
     color: var(--color-teal);
     flex-shrink: 0;
   }
 
-  .brand :global(img) {
-    border-radius: 50%;
-    background: var(--color-cream-soft);
-    box-shadow: var(--shadow-soft);
-  }
-
   .brand-text {
     display: flex;
     flex-direction: column;
-    line-height: 1.15;
   }
 
   .brand-title {
     font-family: var(--font-display);
     font-weight: 700;
-    font-size: 1.2rem;
+    font-size: 1.45rem;
+    line-height: 1.2;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
   }
 
   .brand-byline {
-    font-size: 0.78rem;
-    color: var(--color-slate);
+    font-family: var(--font-script);
     font-weight: 600;
+    font-size: 1.5rem;
+    line-height: 1;
+    color: var(--color-ink);
+    align-self: flex-end;
+    margin-top: 0.15rem;
   }
 
-  .site-nav ul {
+  .peek-rusty {
+    display: block;
+    width: 170px;
+    margin-top: 0.4rem;
+    margin-bottom: -118px; /* lower body clipped by the header edge */
+  }
+
+  .peek-rusty :global(img) {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Desktop nav ---------------------------------------------------- */
+  .desktop-nav {
+    align-self: center;
+    padding-block: 1rem;
+  }
+
+  .desktop-nav ul {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.35rem 0.35rem;
+    justify-content: flex-end;
+    gap: 0.35rem;
     margin: 0;
     padding: 0;
     list-style: none;
   }
 
   .site-nav a {
-    display: inline-block;
+    display: block;
     padding: 0.5em 0.9em;
     border-radius: 999px;
     text-decoration: none;
@@ -124,14 +174,125 @@ const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
     color: var(--color-white);
   }
 
-  @media (max-width: 640px) {
-    .header-inner {
-      justify-content: center;
-      text-align: center;
+  /* Mobile nav (zero-JS disclosure) --------------------------------- */
+  .mobile-nav {
+    display: none;
+  }
+
+  .mobile-nav summary {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    padding: 0.6rem 0.9rem;
+    border-radius: 999px;
+    color: var(--color-teal);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.95rem;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .mobile-nav summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .mobile-nav summary:hover,
+  .mobile-nav details[open] summary {
+    background: rgba(20, 76, 83, 0.08);
+  }
+
+  .burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 4px;
+    width: 20px;
+  }
+
+  .burger span {
+    height: 2.5px;
+    border-radius: 2px;
+    background: currentColor;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+  }
+
+  .mobile-nav details[open] .burger span:nth-child(1) {
+    transform: translateY(6.5px) rotate(45deg);
+  }
+
+  .mobile-nav details[open] .burger span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .mobile-nav details[open] .burger span:nth-child(3) {
+    transform: translateY(-6.5px) rotate(-45deg);
+  }
+
+  .mobile-nav ul {
+    position: absolute;
+    right: 1rem;
+    margin: 0.4rem 0 0;
+    padding: 0.6rem;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    min-width: 190px;
+    background: var(--color-cream-soft);
+    border: 1px solid rgba(20, 76, 83, 0.12);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-card);
+    z-index: 50;
+  }
+
+  .mobile-nav a {
+    font-size: 1.05rem;
+    padding: 0.55em 0.9em;
+  }
+
+  /* Breakpoints ------------------------------------------------------ */
+  @media (max-width: 820px) {
+    .desktop-nav {
+      display: none;
     }
 
-    .site-nav ul {
-      justify-content: center;
+    .mobile-nav {
+      display: block;
+      align-self: center;
+    }
+
+    /* The dropdown must escape the header's clipping box, so on mobile
+       the header stops clipping and Rusty peeks a shorter distance. */
+    .site-header {
+      overflow: visible;
+    }
+
+    .header-inner {
+      padding-top: 1rem;
+      align-items: center;
+    }
+
+    .brand {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 0.8rem;
+    }
+
+    .brand-title {
+      font-size: 1.02rem;
+    }
+
+    .brand-byline {
+      font-size: 1.15rem;
+    }
+
+    .peek-rusty {
+      order: -1;
+      width: 74px;
+      margin: 0 0 -34px;
+      clip-path: inset(0 0 34px 0); /* header no longer clips, so clip the art itself */
     }
   }
 </style>
