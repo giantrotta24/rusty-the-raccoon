@@ -2,12 +2,23 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { Image } from 'astro:assets';
 import headshot from '../assets/images/author-headshot.jpeg';
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': 'https://www.rustytheraccoon.com/author/#michelle-trotta',
+  name: 'Michelle Trotta',
+  jobTitle: 'Speech-Language Pathologist',
+  url: 'https://www.rustytheraccoon.com/author/',
+  '@reverse': { author: { '@id': 'https://www.rustytheraccoon.com/#book' } },
+};
 ---
 
 <BaseLayout
   title="Author — Rusty the Raccoon is Scared of the Dark"
   description="Meet Michelle Trotta, the Ohio-based speech-language pathologist and author of Rusty the Raccoon is Scared of the Dark."
 >
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(personSchema)} />
   <section class="section author-hero">
     <div class="wrap author-inner">
       <div class="author-art">

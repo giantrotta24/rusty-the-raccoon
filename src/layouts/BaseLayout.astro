@@ -38,6 +38,7 @@ const ogImageURL = new URL(ogImage, Astro.site);
     <meta name="twitter:image" content={ogImageURL} />
 
     <meta name="generator" content={Astro.generator} />
+    <slot name="head" />
   </head>
   <body>
     <a href="#main" class="visually-hidden">Skip to main content</a>

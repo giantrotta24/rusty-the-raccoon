@@ -7,12 +7,47 @@ import amazonLogo from '../assets/images/amazon-logo.png';
 
 const amazonUrl =
   'https://www.amazon.com/Rusty-Raccoon-Scared-Michelle-Trotta/dp/B0CJ44D6NK/ref=tmm_pap_swatch_0?_encoding=UTF8&qid=1695085985&sr=8-1';
+
+const bookSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Book',
+  '@id': 'https://www.rustytheraccoon.com/#book',
+  name: 'Rusty the Raccoon is Scared of the Dark',
+  bookFormat: 'https://schema.org/Paperback',
+  inLanguage: 'en',
+  url: 'https://www.rustytheraccoon.com/',
+  image: new URL('/og-book-cover.jpg', Astro.site).href,
+  author: {
+    '@type': 'Person',
+    '@id': 'https://www.rustytheraccoon.com/author/#michelle-trotta',
+    name: 'Michelle Trotta',
+    jobTitle: 'Speech-Language Pathologist',
+    url: 'https://www.rustytheraccoon.com/author/',
+  },
+  illustrator: { '@type': 'Person', name: 'Alisha Uguccini' },
+  publisher: {
+    '@type': 'Organization',
+    name: 'Fresh Beginnings Publishing',
+    url: 'https://www.freshbeginningspublishing.com/',
+  },
+  sameAs: [
+    'https://www.instagram.com/rusty_theraccoon/',
+    'https://www.facebook.com/rustytheraccoonisscaredofthedark',
+    'https://www.youtube.com/channel/UCOp3C0QBIaA5T6tU9N5aiCQ',
+  ],
+  offers: {
+    '@type': 'Offer',
+    url: amazonUrl,
+    availability: 'https://schema.org/InStock',
+  },
+};
 ---
 
 <BaseLayout
   title="Rusty the Raccoon is Scared of the Dark"
   description="A picture book by speech-language pathologist Michelle Trotta about Rusty the Raccoon, who finds the courage to face the dark with a little help from his friend Squeaks."
 >
+  <script type="application/ld+json" slot="head" set:html={JSON.stringify(bookSchema)} />
   <section class="hero section-teal">
     <div class="firefly-field" aria-hidden="true">
       <span class="firefly" style="left: 12%; top: 20%; animation-delay: 0.2s;"></span>
