@@ -13,7 +13,13 @@ const email = 'Freshbeginningspublishing@gmail.com';
   <section class="section contact-section">
     <div class="wrap contact-inner">
       <div class="contact-art">
-        <Image src={contactIcon} alt="" width={220} height={205} />
+        <span class="art-ring" aria-hidden="true"></span>
+        <span class="firefly art-firefly-1" aria-hidden="true"></span>
+        <span class="firefly art-firefly-2" aria-hidden="true"></span>
+        <span class="firefly art-firefly-3" aria-hidden="true"></span>
+        <span class="art-badge">
+          <Image src={contactIcon} alt="" width={220} height={205} />
+        </span>
       </div>
       <div class="contact-copy">
         <h1>Contact us!</h1>
@@ -30,9 +36,60 @@ const email = 'Freshbeginningspublishing@gmail.com';
 <style>
   .contact-inner {
     display: grid;
-    gap: 2rem;
+    gap: 2.5rem;
     justify-items: center;
     text-align: center;
+  }
+
+  /* Mushroom art in a round badge with a hand-drawn dashed ring —
+     same language as the activity cards' dashed borders. */
+  .contact-art {
+    position: relative;
+    width: clamp(220px, 30vw, 270px);
+    aspect-ratio: 1;
+  }
+
+  .art-badge {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-white);
+    border-radius: 50%;
+    box-shadow: var(--shadow-card);
+    overflow: hidden;
+  }
+
+  .art-badge :global(img) {
+    width: 74%;
+    height: auto;
+  }
+
+  .art-ring {
+    position: absolute;
+    inset: -16px;
+    border: 3px dashed var(--color-amber);
+    border-radius: 50%;
+    opacity: 0.85;
+  }
+
+  .art-firefly-1 {
+    left: -34px;
+    top: 22%;
+    animation-delay: 0.5s;
+  }
+
+  .art-firefly-2 {
+    right: -40px;
+    top: 8%;
+    animation-delay: 1.8s;
+  }
+
+  .art-firefly-3 {
+    right: -18px;
+    bottom: 6%;
+    animation-delay: 2.7s;
   }
 
   .contact-copy {
