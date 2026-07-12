@@ -1,43 +1,44 @@
-# Astro Starter Kit: Minimal
+# Rusty the Raccoon is Scared of the Dark
 
-```sh
-npm create astro@latest -- --template minimal
-```
+Static Astro rebuild of [rustytheraccoon.com](https://www.rustytheraccoon.com), the site for
+Michelle Trotta's children's book *Rusty the Raccoon is Scared of the Dark*. The original Wix
+site is being retired; this project reproduces its content and structure with a cleaner, faster,
+self-hosted build. Deploys to Cloudflare Pages.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+The full scrape of the original site (HTML, images, PDFs, and a content manifest) lives in
+`scrape/` for reference and is not part of the build.
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
+## Project Structure
 
 ```text
 /
 ├── public/
+│   ├── activities/       # 11 downloadable activity PDFs
+│   ├── _redirects        # Cloudflare Pages redirect rules
+│   └── robots.txt
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── assets/images/    # Optimized images (astro:assets)
+│   ├── components/       # Header, Footer
+│   ├── layouts/          # BaseLayout (SEO meta, fonts, header/footer)
+│   ├── pages/             # index, about, author, activities, resources, videos, contact
+│   └── styles/global.css # Design tokens, fonts, shared component styles
+└── scrape/               # Archived original site content (reference only, untouched)
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Commands
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+| Command           | Action                                       |
+| :----------------- | :-------------------------------------------- |
+| `npm install`       | Install dependencies                          |
+| `npm run dev`       | Start local dev server at `localhost:4321`    |
+| `npm run build`     | Build the production site to `./dist/`        |
+| `npm run preview`   | Preview the production build locally          |
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Design
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- **Deep teal** `#144c53` — sampled from the original site's section background color.
+- **Cream** `#f7f3ea` — sampled from the original site's decorative background art.
+- **Amber** `#f2a93b` / **coral** `#ef6f63` — accent colors echoing the book's own artwork,
+  including the glowing jar of fireflies that Rusty and Squeaks carry through the dark — the
+  site's recurring "firefly-glow" signature motif.
+- **Fredoka** (display) + **Nunito Sans** (body), self-hosted via `@fontsource`.

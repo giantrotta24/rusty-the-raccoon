@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import contactIcon from '../assets/images/contact-icon.png';
+
+const email = 'Freshbeginningspublishing@gmail.com';
+---
+
+<BaseLayout
+  title="Contact — Rusty the Raccoon is Scared of the Dark"
+  description="Get in touch with the team behind Rusty the Raccoon is Scared of the Dark by Michelle Trotta."
+>
+  <section class="section contact-section">
+    <div class="wrap contact-inner">
+      <div class="contact-art">
+        <Image src={contactIcon} alt="" width={220} height={205} />
+      </div>
+      <div class="contact-copy">
+        <h1>Contact us!</h1>
+        <p>
+          We are always happy to see &amp; hear from you. If you want to give us feedback, ask a
+          question, visit from the author, or simply want to say hello, please email us at:
+        </p>
+        <a class="btn btn-amber" href={`mailto:${email}`}>{email}</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .contact-inner {
+    display: grid;
+    gap: 2rem;
+    justify-items: center;
+    text-align: center;
+  }
+
+  .contact-copy {
+    max-width: 56ch;
+  }
+
+  .contact-copy .btn {
+    margin-top: 0.5rem;
+    word-break: break-word;
+  }
+</style>

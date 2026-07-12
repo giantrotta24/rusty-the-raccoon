@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import headshot from '../assets/images/author-headshot.jpeg';
+---
+
+<BaseLayout
+  title="Author — Rusty the Raccoon is Scared of the Dark"
+  description="Meet Michelle Trotta, the Ohio-based speech-language pathologist and author of Rusty the Raccoon is Scared of the Dark."
+>
+  <section class="section author-hero">
+    <div class="wrap author-inner">
+      <div class="author-art">
+        <Image
+          src={headshot}
+          alt="Michelle Trotta, author of Rusty the Raccoon is Scared of the Dark"
+          width={420}
+          height={420}
+          priority
+        />
+      </div>
+      <div class="author-copy">
+        <h1>About the Author</h1>
+        <p>
+          Michelle Trotta is an Ohio-based Speech-Language Pathologist. As a child, she enjoyed
+          writing short stories in hopes that one day she would become an author. During her time
+          of working with children, she recognized the need for a children's book that fosters
+          acceptance and celebrates differences. The mission of sharing Rusty's story is to
+          empower children and provide adults with a valuable developmental tool through the
+          magic of storytelling.
+        </p>
+        <p>
+          She continues to write, make music, and enjoy her passions with her husband, daughter,
+          and dog. Michelle will continue to write more books to add to this series to showcase
+          a variety of animals facing their fears (that people may not expect)...like a porcupine
+          that is scared of needles, or a caterpillar that is scared of change!
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .author-inner {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .author-art {
+    justify-self: center;
+  }
+
+  .author-art :global(img) {
+    border-radius: var(--radius-lg);
+    object-fit: cover;
+    box-shadow: var(--shadow-card);
+  }
+
+  @media (min-width: 780px) {
+    .author-inner {
+      grid-template-columns: 0.85fr 1.15fr;
+    }
+  }
+</style>

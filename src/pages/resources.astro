@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const resources = [
+  {
+    heading: 'Getting Your Child Ready For Reading and Writing',
+    url: 'https://www.asha.org/siteassets/uploadedfiles/getting-your-child-ready-reading-and-writing.pdf',
+  },
+  {
+    heading: 'Promoting Language with Books',
+    url: 'https://www.hanen.org/Helpful-Info/Articles/Promoting-Language-with-Books.aspx',
+  },
+  {
+    heading: 'Developmental Norms for Speech and Language',
+    url: 'https://www.asha.org/slp/schools/prof-consult/norms/',
+  },
+  {
+    heading: 'Reading Rockets',
+    url: 'https://www.readingrockets.org/reading-topics/activities',
+  },
+  {
+    heading: 'Activities to Encourage Speech and Language Development',
+    url: 'https://www.asha.org/public/speech/development/activities-to-encourage-speech-and-language-development/',
+  },
+  {
+    heading: 'How Reading Books Fosters Language Development around the World',
+    url: 'https://www.hindawi.com/journals/cdr/2012/602807/',
+  },
+  {
+    heading: 'Talking Toddlers: Language Development Through Reading',
+    url: 'https://www.handyhandouts.com/pdf/152_TalkingToddlers.pdf',
+  },
+  {
+    heading: 'Guide to Communication Milestones',
+    url: 'https://www.carolinatherapeutics.com/wp-content/uploads/milestones-guide.pdf',
+  },
+  {
+    heading: 'Strengthen Early Literacy Skills and Generate a Love of Reading in Young Children',
+    url: 'https://www.handyhandouts.com/pdf/33_LiteracySkills.pdf',
+  },
+  {
+    heading: 'Reach Out & Read',
+    url: 'https://reachoutandread.org/',
+  },
+  {
+    heading: 'Early & Bright SLP (Literacy Milestones for children birth to five)',
+    url: 'https://www.earlyandbrightslp.com/',
+  },
+  {
+    heading: 'Speech Pathology 2.0: The Latest Technologies Transforming Speech Therapy',
+    url: 'https://onlinespeechpathologyprograms.org/speech-pathology-2-0/',
+  },
+];
+---
+
+<BaseLayout
+  title="Resources — Rusty the Raccoon is Scared of the Dark"
+  description="Speech and language development resources hand-picked to accompany Rusty the Raccoon is Scared of the Dark, for parents, teachers, and therapists."
+>
+  <section class="section resources-hero">
+    <div class="wrap">
+      <h1>Links to Resources</h1>
+      <p>
+        Check out some of these sites for research, tips, activities, etc. to help with your
+        understanding of speech and language development skills.
+      </p>
+    </div>
+  </section>
+
+  <section class="section resources-list">
+    <div class="wrap">
+      <div class="grid grid-2 resource-grid">
+        {
+          resources.map((resource) => (
+            <a class="card resource-card" href={resource.url} target="_blank" rel="noreferrer noopener">
+              <h3>{resource.heading}</h3>
+              <span class="resource-link-label">Visit site →</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .resources-hero p {
+    max-width: 60ch;
+  }
+
+  .resource-grid {
+    margin-top: 1rem;
+  }
+
+  .resource-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+    text-decoration: none;
+    color: inherit;
+    border-left: 4px solid var(--color-amber);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .resource-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .resource-card h3 {
+    margin: 0;
+  }
+
+  .resource-link-label {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--color-coral);
+  }
+</style>

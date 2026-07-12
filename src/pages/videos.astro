@@ -1,0 +1,99 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const videos = [
+  {
+    title: 'Rusty the Raccoon is Scared of the Dark Kickstarter',
+    id: 'U3lesQH9j4g',
+  },
+  {
+    title: 'Rusty the Raccoon is Scared of the Dark ASL',
+    id: 'ga9TbcSYRRA',
+    credit: true,
+  },
+  {
+    title: 'Rusty the Raccoon is Scared of the Dark',
+    id: '0cZ0qaocBFM',
+  },
+];
+---
+
+<BaseLayout
+  title="Videos — Rusty the Raccoon is Scared of the Dark"
+  description="Watch the Kickstarter promo, ASL storytelling, and full read-aloud videos for Rusty the Raccoon is Scared of the Dark."
+>
+  <section class="section videos-section">
+    <div class="wrap">
+      <h1>Videos</h1>
+      <div class="video-list">
+        {
+          videos.map((video) => (
+            <article class="video-card">
+              <h2>{video.title}</h2>
+              <div class="video-frame">
+                <iframe
+                  src={`https://www.youtube.com/embed/${video.id}`}
+                  title={video.title}
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                />
+              </div>
+              {video.credit && (
+                <p class="video-credit">
+                  ASL storytelling interpreted by Hannah Bissonette. Visit her channel:{' '}
+                  <a href="https://www.youtube.com/@aslwithmrs.b9289" target="_blank" rel="noreferrer noopener">
+                    @aslwithmrs.b9289
+                  </a>
+                </p>
+              )}
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .video-list {
+    display: grid;
+    gap: 2.5rem;
+    margin-top: 1.5rem;
+  }
+
+  @media (min-width: 900px) {
+    .video-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .video-card:first-child {
+      grid-column: 1 / -1;
+      max-width: 720px;
+      margin-inline: auto;
+    }
+  }
+
+  .video-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    background: var(--color-teal-deep);
+  }
+
+  .video-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .video-credit {
+    margin-top: 0.75rem;
+    font-size: 0.95rem;
+    color: var(--color-slate);
+  }
+</style>

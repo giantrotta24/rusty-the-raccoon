@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import hugImage from '../assets/images/raccoon-squeaks-hug.png';
+import fireflyScene from '../assets/images/firefly-jar-scene.jpg';
+---
+
+<BaseLayout
+  title="About — Rusty the Raccoon is Scared of the Dark"
+  description="Meet Rusty the Raccoon and learn about the mission behind Rusty the Raccoon is Scared of the Dark, a children's book built to support speech and language development."
+>
+  <section class="section about-hero">
+    <div class="wrap about-hero-inner">
+      <div class="about-copy">
+        <h1>About Rusty</h1>
+        <p>
+          In this brightly illustrated book from the upcoming children's book series about
+          overcoming fears, Rusty, a raccoon gains the strength to tell his family and friends
+          about his big secret. Growing up as a raccoon includes dumpster diving, serving for
+          leftovers outside of pizza shops, and staying up all night playing games and eating.
+          There is only one problem, Rusty is terrified of the dark. One day Rusty decides to
+          stay up during the day and goes on an adventure around New York City to finally see
+          the world in light. Along the way, he finds a tailless squirrel named Squeaks who
+          helps Rusty learn that the dark is not so scary after all! Rusty the Raccoon is
+          Scared of the Dark emphasizes the importance of friendship, courage, and overcoming
+          obstacles.
+        </p>
+      </div>
+      <div class="about-art">
+        <Image src={hugImage} alt="Two raccoons sharing a warm hug" width={340} height={478} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section-teal mission">
+    <div class="firefly-field" aria-hidden="true">
+      <span class="firefly" style="left: 10%; top: 15%; animation-delay: 0.4s;"></span>
+      <span class="firefly" style="left: 4%; top: 60%; animation-delay: 1.6s;"></span>
+      <span class="firefly" style="left: 92%; top: 22%; animation-delay: 2.4s;"></span>
+      <span class="firefly" style="left: 85%; top: 70%; animation-delay: 1s;"></span>
+    </div>
+    <div class="wrap mission-inner">
+      <div class="mission-art">
+        <Image
+          src={fireflyScene}
+          alt="Rusty and Squeaks looking out over a glowing jar of fireflies with the city skyline in the distance"
+          width={520}
+          height={347}
+        />
+      </div>
+      <div class="mission-copy">
+        <h2>Our mission</h2>
+        <p>
+          We have recognized the need for books that empower parents, teachers, caregivers, and
+          others to enhance children's speech and language development skills. As a
+          speech-language pathologist, Michelle Trotta, consistently integrates books into
+          therapy sessions and emphasizes the significance of early literacy skills.
+        </p>
+        <p>
+          That's why Rusty the Raccoon is Scared of the Dark goes beyond being an entertaining
+          book—it's a valuable resource for adults to have at their fingertips. It offers
+          insights into developmental milestones and suggests engaging activities to accompany
+          the reading experience. Additionally, our website that accompanies the book, providing
+          a wealth of FREE resources for adults, including printable worksheets like coloring
+          pages, mazes, crafts, word searches, and more. These resources can be utilized by
+          parents at home, teachers in the classroom, and even speech and occupational
+          therapists during therapy sessions.
+        </p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-hero-inner {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .about-art {
+    justify-self: center;
+  }
+
+  .about-art :global(img) {
+    border-radius: var(--radius-lg);
+  }
+
+  @media (min-width: 780px) {
+    .about-hero-inner {
+      grid-template-columns: 1.3fr 0.7fr;
+    }
+  }
+
+  .mission-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .mission-art {
+    justify-self: center;
+  }
+
+  .mission-art :global(img) {
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 46px -18px rgba(0, 0, 0, 0.55);
+  }
+
+  @media (min-width: 780px) {
+    .mission-inner {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+</style>

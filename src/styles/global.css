@@ -1,0 +1,289 @@
+/* Fonts — self-hosted via @fontsource, no external CDN requests */
+@import '@fontsource/fredoka/500.css';
+@import '@fontsource/fredoka/600.css';
+@import '@fontsource/fredoka/700.css';
+@import '@fontsource/nunito-sans/400.css';
+@import '@fontsource/nunito-sans/400-italic.css';
+@import '@fontsource/nunito-sans/600.css';
+@import '@fontsource/nunito-sans/700.css';
+@import '@fontsource/nunito-sans/800.css';
+
+/* ---------------------------------------------------------------------
+   Design tokens
+   Deep teal is sampled directly from the original site's section
+   background (--color_11: rgb(20,76,83) in the scraped Wix CSS).
+   Cream is sampled from the site's decorative confetti background art
+   (scrape/images/cda177_...png), which reads as rgb(244,242,236).
+   Amber/coral echo the confetti accent dots and the glowing jar of
+   fireflies from the book's own artwork — that glow is this site's
+   signature motif.
+   --------------------------------------------------------------------- */
+:root {
+  --color-teal: #144c53;
+  --color-teal-deep: #0c3339;
+  --color-teal-tint: #1f6b74;
+  --color-cream: #f7f3ea;
+  --color-cream-soft: #fffdf9;
+  --color-amber: #f2a93b;
+  --color-amber-deep: #d3860f;
+  --color-coral: #ef6f63;
+  --color-slate: #66759a;
+  --color-ink: #1e2e30;
+  --color-white: #ffffff;
+
+  --font-display: 'Fredoka', 'Baloo 2', sans-serif;
+  --font-body: 'Nunito Sans', 'Segoe UI', sans-serif;
+
+  --radius-lg: 28px;
+  --radius-md: 18px;
+  --radius-sm: 10px;
+
+  --shadow-card: 0 10px 30px -12px rgba(20, 76, 83, 0.25);
+  --shadow-soft: 0 4px 16px -6px rgba(20, 76, 83, 0.18);
+
+  --max-width: 1160px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0 0 0.6em;
+  color: var(--color-teal);
+}
+
+h1 {
+  font-size: clamp(2.2rem, 4.5vw, 3.4rem);
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+}
+
+h3 {
+  font-size: 1.3rem;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--color-teal);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid var(--color-amber);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.section {
+  padding-block: clamp(3rem, 7vw, 5.5rem);
+}
+
+.section-teal {
+  background: linear-gradient(180deg, var(--color-teal) 0%, var(--color-teal-deep) 100%);
+  color: var(--color-cream-soft);
+  position: relative;
+  overflow: hidden;
+}
+
+.section-teal h1,
+.section-teal h2,
+.section-teal h3 {
+  color: var(--color-white);
+}
+
+.section-teal a:not(.btn) {
+  color: var(--color-cream-soft);
+}
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  color: var(--color-coral);
+  margin-bottom: 0.75rem;
+}
+
+.section-teal .eyebrow {
+  color: var(--color-amber);
+}
+
+/* Buttons -------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5em;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.05rem;
+  padding: 0.85em 1.7em;
+  border-radius: 999px;
+  text-decoration: none;
+  border: 2px solid transparent;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+  cursor: pointer;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-amber {
+  background: var(--color-amber);
+  color: var(--color-teal-deep);
+  box-shadow: 0 0 0 0 rgba(242, 169, 59, 0.55);
+}
+
+.btn-amber:hover {
+  background: var(--color-amber-deep);
+  box-shadow: 0 0 32px 4px rgba(242, 169, 59, 0.55);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: currentColor;
+  color: inherit;
+}
+
+.btn-outline:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.btn-teal {
+  background: var(--color-teal);
+  color: var(--color-white);
+}
+
+.btn-teal:hover {
+  background: var(--color-teal-deep);
+}
+
+/* Firefly-glow motif ----------------------------------------------------
+   A recurring signature born from the book's own story beat: Rusty and
+   Squeaks carry a glass jar of fireflies through the dark. Soft glowing
+   amber points echo that image wherever the deep-teal "night" sections
+   appear. */
+.firefly-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.firefly {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--color-amber);
+  box-shadow: 0 0 12px 4px rgba(242, 169, 59, 0.7), 0 0 28px 10px rgba(242, 169, 59, 0.3);
+  opacity: 0.85;
+  animation: flicker 4.5s ease-in-out infinite;
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 0.95;
+    transform: scale(1.1);
+  }
+}
+
+/* Cards ------------------------------------------------------------------ */
+.card {
+  background: var(--color-cream-soft);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-soft);
+  padding: 1.75rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.75rem;
+}
+
+@media (min-width: 640px) {
+  .grid-2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 780px) {
+  .grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

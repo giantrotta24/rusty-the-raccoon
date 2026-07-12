@@ -1,0 +1,137 @@
+---
+import { Image } from 'astro:assets';
+import raccoonLogo from '../assets/images/raccoon-logo.png';
+
+const navItems = [
+  { label: 'Home', href: '/' },
+  { label: 'About', href: '/about' },
+  { label: 'Author', href: '/author' },
+  { label: 'Activities', href: '/activities' },
+  { label: 'Resources', href: '/resources' },
+  { label: 'Videos', href: '/videos' },
+  { label: 'Contact', href: '/contact' },
+];
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="/" class="brand">
+      <Image src={raccoonLogo} alt="" width={52} height={52} loading="eager" />
+      <span class="brand-text">
+        <span class="brand-title">Rusty the Raccoon</span>
+        <span class="brand-byline">by Michelle Trotta</span>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        {
+          navItems.map((item) => {
+            const itemPath = item.href.replace(/\/$/, '') || '/';
+            const isActive = itemPath === currentPath;
+            return (
+              <li>
+                <a href={item.href} aria-current={isActive ? 'page' : undefined}>
+                  {item.label}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    background: var(--color-cream);
+    border-bottom: 1px solid rgba(20, 76, 83, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 40;
+  }
+
+  .header-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding-block: 0.85rem;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+    color: var(--color-teal);
+    flex-shrink: 0;
+  }
+
+  .brand :global(img) {
+    border-radius: 50%;
+    background: var(--color-cream-soft);
+    box-shadow: var(--shadow-soft);
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+  }
+
+  .brand-title {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.2rem;
+  }
+
+  .brand-byline {
+    font-size: 0.78rem;
+    color: var(--color-slate);
+    font-weight: 600;
+  }
+
+  .site-nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.35rem;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .site-nav a {
+    display: inline-block;
+    padding: 0.5em 0.9em;
+    border-radius: 999px;
+    text-decoration: none;
+    color: var(--color-teal);
+    font-weight: 700;
+    font-size: 0.95rem;
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+
+  .site-nav a:hover {
+    background: rgba(20, 76, 83, 0.08);
+  }
+
+  .site-nav a[aria-current='page'] {
+    background: var(--color-teal);
+    color: var(--color-white);
+  }
+
+  @media (max-width: 640px) {
+    .header-inner {
+      justify-content: center;
+      text-align: center;
+    }
+
+    .site-nav ul {
+      justify-content: center;
+    }
+  }
+</style>

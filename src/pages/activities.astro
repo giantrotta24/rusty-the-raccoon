@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import heroImage from '../assets/images/activities-hero.png';
+import pinTailCutout from '../assets/images/activity-pin-tail-cutout.png';
+import colorRustySqueaks from '../assets/images/activity-color-rusty-squeaks.png';
+import pinTheTail from '../assets/images/activity-pin-the-tail.png';
+import colorMushroom from '../assets/images/activity-color-mushroom.png';
+import wordSearch from '../assets/images/activity-word-search.png';
+import underTheWater from '../assets/images/activity-under-the-water.jpeg';
+import spotDifference from '../assets/images/activity-spot-the-difference.png';
+import drawVegetables from '../assets/images/activity-draw-vegetables.jpg';
+import jarOfFireflies from '../assets/images/activity-jar-of-fireflies.png';
+import vocabMatch from '../assets/images/activity-vocab-match.png';
+import vocabMatchPart2 from '../assets/images/activity-vocab-match-part2.png';
+
+const activities = [
+  {
+    title: 'Pin the Tail on Squeaks (Tail Cut out)',
+    image: pinTailCutout,
+    pdf: '/activities/pin-the-tail-on-squeaks-tail-cut-out.pdf',
+  },
+  {
+    title: 'Color Rusty & Squeaks',
+    image: colorRustySqueaks,
+    pdf: '/activities/color-rusty-squeaks.pdf',
+  },
+  {
+    title: 'Pin the Tail on Squeaks',
+    image: pinTheTail,
+    pdf: '/activities/pin-the-tail-on-squeaks.pdf',
+  },
+  {
+    title: 'Color your Mushroom',
+    image: colorMushroom,
+    pdf: '/activities/color-your-mushroom.pdf',
+  },
+  {
+    title: 'Word Search',
+    image: wordSearch,
+    pdf: '/activities/word-search.pdf',
+  },
+  {
+    title: "What's Under the Water?",
+    image: underTheWater,
+    pdf: '/activities/what-s-under-the-water.pdf',
+  },
+  {
+    title: 'Spot the Difference',
+    image: spotDifference,
+    pdf: '/activities/spot-the-difference.pdf',
+  },
+  {
+    title: "Draw What Vegetables are in Mom's Garden",
+    image: drawVegetables,
+    pdf: '/activities/draw-what-vegetables-are-in-mom-s-garden.pdf',
+  },
+  {
+    title: 'Help Rusty Find His Jar of FireFlies',
+    image: jarOfFireflies,
+    pdf: '/activities/help-rusty-find-his-jar-of-fireflies.pdf',
+  },
+  {
+    title: 'Can you Match the Vocabulary Word to Its Definition?',
+    image: vocabMatch,
+    pdf: '/activities/can-you-match-the-vocabulary-word-to-its-definition.pdf',
+  },
+  {
+    title: 'Can you Match the Vocabulary Word to Its Definition? (Part 2)',
+    image: vocabMatchPart2,
+    pdf: '/activities/can-you-match-the-vocabulary-word-to-its-definition-part-2.pdf',
+  },
+];
+---
+
+<BaseLayout
+  title="Activities — Rusty the Raccoon is Scared of the Dark"
+  description="Free printable activities for Rusty the Raccoon is Scared of the Dark — coloring pages, mazes, word searches, crafts, and more."
+>
+  <section class="section activities-hero">
+    <div class="wrap activities-hero-inner">
+      <div class="activities-copy">
+        <h1>Learn and Play with Rusty!</h1>
+        <p>Little ones will love these free activities. Download coloring pages, mazes, puzzles, and more!</p>
+      </div>
+      <div class="activities-art">
+        <Image src={heroImage} alt="Rusty the raccoon's family gathered for a meal together" width={380} height={250} />
+      </div>
+    </div>
+  </section>
+
+  <section class="section activities-list">
+    <div class="wrap">
+      <h2>Download Our Activities</h2>
+      <div class="grid grid-3 activity-grid">
+        {
+          activities.map((activity) => (
+            <article class="card activity-card">
+              <div class="activity-thumb">
+                <Image src={activity.image} alt={`${activity.title} — activity preview`} width={340} height={340} />
+              </div>
+              <h3>{activity.title}</h3>
+              <a class="btn btn-teal" href={activity.pdf} download>
+                Download PDF
+              </a>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .activities-hero-inner {
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .activities-art {
+    justify-self: center;
+  }
+
+  .activities-art :global(img) {
+    border-radius: var(--radius-lg);
+  }
+
+  @media (min-width: 780px) {
+    .activities-hero-inner {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+  }
+
+  .activity-grid {
+    margin-top: 2rem;
+  }
+
+  .activity-card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    border-top: 3px dashed var(--color-coral);
+    text-align: center;
+  }
+
+  .activity-thumb {
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+    background: var(--color-white);
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .activity-thumb :global(img) {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .activity-card h3 {
+    font-size: 1.05rem;
+    flex-grow: 1;
+  }
+</style>

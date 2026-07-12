@@ -1,17 +1,113 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import bookCover from '../assets/images/book-cover.png';
+import riverScene from '../assets/images/raccoon-squeaks-river.jpeg';
 
+const amazonUrl =
+  'https://www.amazon.com/Rusty-Raccoon-Scared-Michelle-Trotta/dp/B0CJ44D6NK/ref=tmm_pap_swatch_0?_encoding=UTF8&qid=1695085985&sr=8-1';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout
+  title="Rusty the Raccoon is Scared of the Dark"
+  description="A picture book by speech-language pathologist Michelle Trotta about Rusty the Raccoon, who finds the courage to face the dark with a little help from his friend Squeaks."
+>
+  <section class="hero section-teal">
+    <div class="firefly-field" aria-hidden="true">
+      <span class="firefly" style="left: 12%; top: 20%; animation-delay: 0.2s;"></span>
+      <span class="firefly" style="left: 6%; top: 68%; animation-delay: 1.4s;"></span>
+      <span class="firefly" style="left: 28%; top: 82%; animation-delay: 2.3s;"></span>
+      <span class="firefly" style="left: 46%; top: 12%; animation-delay: 0.8s;"></span>
+      <span class="firefly" style="left: 90%; top: 30%; animation-delay: 1.9s;"></span>
+      <span class="firefly" style="left: 82%; top: 75%; animation-delay: 3s;"></span>
+    </div>
+    <div class="wrap hero-inner">
+      <div class="hero-copy">
+        <h1>Rusty the Raccoon is Scared of the Dark</h1>
+        <a class="btn btn-amber" href={amazonUrl} target="_blank" rel="noreferrer noopener">
+          Click here to get your copy!
+        </a>
+      </div>
+      <div class="hero-art">
+        <Image src={bookCover} alt="Rusty the Raccoon is Scared of the Dark — book cover" width={480} height={483} priority />
+      </div>
+    </div>
+  </section>
+
+  <section class="section intro">
+    <div class="wrap intro-inner">
+      <div class="intro-art">
+        <Image src={riverScene} alt="Rusty the raccoon and Squeaks the squirrel floating on a log past the New York City skyline" width={420} height={420} />
+      </div>
+      <div class="intro-copy">
+        <h2>Learn and play with Rusty and Squeaks!</h2>
+        <p>Download coloring pages, mazes, word searches, crafts, and more.</p>
+        <div class="teaser-links">
+          <a class="btn btn-teal" href="/activities">Activities</a>
+          <a class="btn btn-outline teal-outline" href="/resources">Resources</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+    padding-block: clamp(3rem, 8vw, 5.5rem);
+  }
+
+  .hero-art {
+    justify-self: center;
+  }
+
+  .hero-art :global(img) {
+    border-radius: var(--radius-lg);
+    box-shadow: 0 20px 50px -18px rgba(0, 0, 0, 0.55);
+  }
+
+  @media (min-width: 780px) {
+    .hero-inner {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+  }
+
+  .intro-inner {
+    display: grid;
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .intro-art {
+    justify-self: center;
+  }
+
+  .intro-art :global(img) {
+    border-radius: var(--radius-lg);
+  }
+
+  @media (min-width: 780px) {
+    .intro-inner {
+      grid-template-columns: 0.9fr 1.1fr;
+    }
+  }
+
+  .teaser-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.9rem;
+    margin-top: 1.5rem;
+  }
+
+  .teal-outline {
+    color: var(--color-teal);
+  }
+
+  .teal-outline:hover {
+    background: rgba(20, 76, 83, 0.08);
+  }
+</style>
