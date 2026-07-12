@@ -45,8 +45,24 @@ const email = 'Freshbeginningspublishing@gmail.com';
      same language as the activity cards' dashed borders. */
   .contact-art {
     position: relative;
-    width: clamp(220px, 30vw, 270px);
+    width: clamp(150px, 60vw, 270px);
     aspect-ratio: 1;
+  }
+
+  /* Tuck the decorations inside the viewport at very narrow widths.
+     Scoped under .contact-art to outrank the base offsets below. */
+  @media (max-width: 360px) {
+    .contact-art .art-firefly-1 {
+      left: -8px;
+    }
+
+    .contact-art .art-firefly-2 {
+      right: -10px;
+    }
+
+    .contact-art .art-firefly-3 {
+      right: -4px;
+    }
   }
 
   .art-badge {

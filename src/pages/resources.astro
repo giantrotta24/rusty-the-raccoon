@@ -110,6 +110,9 @@ const resources = [
 
   .resource-card h3 {
     margin: 0;
+    /* 'anywhere' (unlike 'break-word') shrinks min-content, so the grid
+       track can't be held wider than the viewport by one long word */
+    overflow-wrap: anywhere;
   }
 
   .resource-link-label {
