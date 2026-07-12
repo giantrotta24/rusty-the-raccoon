@@ -143,6 +143,46 @@ const amazonUrl =
     }
   }
 
+  /* Mobile: the cover art IS the title, so let it lead poster-style and
+     keep the h1 for screen readers/SEO only. CTA centers beneath it. */
+  @media (max-width: 779px) {
+    .hero-copy h1 {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+      white-space: nowrap;
+    }
+
+    .hero-inner {
+      gap: 2rem;
+    }
+
+    .hero-art {
+      order: -1;
+    }
+
+    .hero-copy {
+      text-align: center;
+    }
+
+    .hero-cta {
+      justify-content: center;
+      margin-top: 0.25rem;
+    }
+
+    .hero-cta-text {
+      font-size: 1.75rem;
+    }
+
+    .hero-cta-arrow {
+      margin-left: 0;
+    }
+  }
+
   .intro-inner {
     display: grid;
     gap: 2.5rem;
