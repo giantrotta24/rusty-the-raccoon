@@ -1,6 +1,6 @@
 ---
 import { Image } from 'astro:assets';
-import raccoonLogo from '../assets/images/raccoon-logo.png';
+import raccoonLogo from '../assets/images/raccoon-logo-transparent.png';
 
 const navItems = [
   { label: 'Home', href: '/' },
@@ -24,11 +24,11 @@ const linkFor = (item: (typeof navItems)[number]) => {
   <div class="wrap header-inner">
     <a href="/" class="brand">
       <span class="brand-text">
-        <span class="brand-title">Rusty the Raccoon is<br />Scared of the Dark</span>
-        <span class="brand-byline">Michelle Trotta</span>
+        <span class="brand-title">Rusty the Raccoon</span>
+        <span class="brand-byline">by Michelle Trotta</span>
       </span>
       <span class="peek-rusty">
-        <Image src={raccoonLogo} alt="" width={380} height={563} loading="eager" />
+        <Image src={raccoonLogo} alt="" width={193} height={287} loading="eager" />
       </span>
     </a>
 
