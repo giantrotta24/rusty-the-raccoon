@@ -77,6 +77,27 @@ body {
   font-size: 1.05rem;
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  /* Fill the viewport so the footer sits flush at the bottom on tall
+     screens instead of floating with body background exposed below it. */
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Pages made of a single section (contact, 404, videos, author): let that
+   section absorb the leftover height — its background reaches the footer
+   and the content centers in the space. No-op on content-tall pages. */
+main > .section:only-child {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 h1,
