@@ -32,10 +32,11 @@ const videos = [
               <h2>{video.title}</h2>
               <div class="video-frame">
                 <iframe
-                  src={`https://www.youtube.com/embed/${video.id}`}
+                  src={`https://www.youtube-nocookie.com/embed/${video.id}`}
                   title={video.title}
                   loading="lazy"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
                   allowfullscreen
                 />
               </div>
@@ -43,7 +44,7 @@ const videos = [
                 <p class="video-credit">
                   ASL storytelling interpreted by Hannah Bissonette. Visit her channel:{' '}
                   <a href="https://www.youtube.com/@aslwithmrs.b9289" target="_blank" rel="noreferrer noopener">
-                    @aslwithmrs.b9289
+                    @aslwithmrs.b9289<span class="visually-hidden"> (opens in a new tab)</span>
                   </a>
                 </p>
               )}
@@ -94,6 +95,6 @@ const videos = [
   .video-credit {
     margin-top: 0.75rem;
     font-size: 0.95rem;
-    color: var(--color-slate);
+    color: var(--color-slate-ink);
   }
 </style>

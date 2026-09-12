@@ -34,7 +34,7 @@ const socialLinks = [
       {
         socialLinks.map((link) => (
           <li>
-            <a href={link.href} target="_blank" rel="noreferrer noopener" aria-label={link.label}>
+            <a href={link.href} target="_blank" rel="noreferrer noopener" aria-label={`${link.label} (opens in a new tab)`}>
               <Image src={link.icon} alt="" width={44} height={44} />
             </a>
           </li>
@@ -43,11 +43,11 @@ const socialLinks = [
     </ul>
     <p class="publisher">
       <a href="https://www.freshbeginningspublishing.com/" target="_blank" rel="noreferrer noopener">
-        Fresh Beginnings Publishing
+        Fresh Beginnings Publishing<span class="visually-hidden"> (opens in a new tab)</span>
       </a>
     </p>
     <p class="site-credit">
-      Site by <a href="https://giantrotta.dev" target="_blank" rel="noopener noreferrer">Gian Trotta</a>
+      Site by <a href="https://giantrotta.dev" target="_blank" rel="noopener noreferrer">Gian Trotta<span class="visually-hidden"> (opens in a new tab)</span></a>
     </p>
   </div>
 </footer>

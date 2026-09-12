@@ -72,9 +72,18 @@ const resources = [
       <div class="grid grid-2 resource-grid">
         {
           resources.map((resource) => (
-            <a class="card resource-card" href={resource.url} target="_blank" rel="noreferrer noopener">
-              <h3>{resource.heading}</h3>
-              <span class="resource-link-label">Visit site →</span>
+            <a
+              class="card resource-card"
+              href={resource.url}
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              <h2>{resource.heading}</h2>
+              <span class="resource-link-label">
+                Visit site
+                <span class="visually-hidden"> (opens in a new tab)</span>
+                <span aria-hidden="true"> →</span>
+              </span>
             </a>
           ))
         }
@@ -99,7 +108,7 @@ const resources = [
     gap: 1rem;
     text-decoration: none;
     color: inherit;
-    border-left: 4px solid var(--color-amber);
+    border-top: 3px dashed var(--color-coral);
     transition: transform 0.15s ease, box-shadow 0.15s ease;
   }
 
@@ -108,8 +117,9 @@ const resources = [
     box-shadow: var(--shadow-card);
   }
 
-  .resource-card h3 {
+  .resource-card h2 {
     margin: 0;
+    font-size: 1.2rem;
     /* 'anywhere' (unlike 'break-word') shrinks min-content, so the grid
        track can't be held wider than the viewport by one long word */
     overflow-wrap: anywhere;
@@ -118,6 +128,6 @@ const resources = [
   .resource-link-label {
     font-family: var(--font-display);
     font-weight: 600;
-    color: var(--color-coral);
+    color: var(--color-coral-ink);
   }
 </style>

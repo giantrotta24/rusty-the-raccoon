@@ -1,0 +1,107 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-12T03:20:00.000Z",
+  "title": "Design System: Rusty the Raccoon",
+  "extensions": {
+    "colorMeta": {
+      "teal": { "role": "primary", "displayName": "Night Teal", "canonical": "#144c53" },
+      "teal-deep": { "role": "primary", "displayName": "Teal Deep", "canonical": "#0c3339" },
+      "cream": { "role": "neutral", "displayName": "Cream Paper", "canonical": "#f7f3ea" },
+      "cream-soft": { "role": "neutral", "displayName": "Cream Soft", "canonical": "#fffdf9" },
+      "amber": { "role": "secondary", "displayName": "Firefly Amber", "canonical": "#f2a93b" },
+      "coral": { "role": "tertiary", "displayName": "Coral Accent", "canonical": "#ef6f63" },
+      "coral-ink": { "role": "tertiary", "displayName": "Coral Ink", "canonical": "#b8453c" },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#1e2e30" },
+      "slate-ink": { "role": "neutral", "displayName": "Slate Ink", "canonical": "#4a5670" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Page heroes and primary headings." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles." },
+      "body": { "displayName": "Body", "purpose": "Prose for parents and professionals." },
+      "script": { "displayName": "Script", "purpose": "Short warm asides and bylines only." }
+    },
+    "shadows": [
+      { "name": "soft", "value": "0 4px 16px -6px rgba(20, 76, 83, 0.18)", "purpose": "Cards at rest." },
+      { "name": "card", "value": "0 10px 30px -12px rgba(20, 76, 83, 0.25)", "purpose": "Hero art and hover elevation." }
+    ],
+    "motion": [
+      { "name": "lift", "value": "transform 0.15s ease", "purpose": "Button and card hover lift." },
+      { "name": "firefly-flicker", "value": "flicker 4.5s ease-in-out infinite", "purpose": "Decorative fireflies on teal night sections; disabled under prefers-reduced-motion." }
+    ],
+    "breakpoints": [
+      { "name": "grid-2", "value": "640px" },
+      { "name": "grid-3", "value": "780px" },
+      { "name": "nav-mobile", "value": "820px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Teal Button",
+      "kind": "button",
+      "refersTo": "button-teal",
+      "description": "Primary action on cream pages (downloads, in-site CTAs).",
+      "html": "<a class=\"ds-btn-teal\" href=\"#\">Download PDF</a>",
+      "css": ".ds-btn-teal { display: inline-flex; align-items: center; gap: 0.5em; font-family: var(--font-display, Fredoka, sans-serif); font-weight: 600; font-size: 1.05rem; padding: 0.85em 1.7em; border-radius: 999px; text-decoration: none; border: 2px solid transparent; background: var(--color-teal, #144c53); color: var(--color-white, #fff); transition: transform 0.15s ease, background 0.15s ease; } .ds-btn-teal:hover { transform: translateY(-2px); background: var(--color-teal-deep, #0c3339); } .ds-btn-teal:focus-visible { outline: 3px solid var(--color-teal, #144c53); outline-offset: 3px; }"
+    },
+    {
+      "name": "Amber Button",
+      "kind": "button",
+      "refersTo": "button-amber",
+      "description": "Warm CTA, especially on contact.",
+      "html": "<a class=\"ds-btn-amber\" href=\"mailto:example@example.com\">Email us</a>",
+      "css": ".ds-btn-amber { display: inline-flex; align-items: center; font-family: var(--font-display, Fredoka, sans-serif); font-weight: 600; font-size: 1.05rem; padding: 0.85em 1.7em; border-radius: 999px; text-decoration: none; background: var(--color-amber, #f2a93b); color: var(--color-teal-deep, #0c3339); transition: transform 0.15s ease, background 0.15s ease, box-shadow 0.15s ease; } .ds-btn-amber:hover { transform: translateY(-2px); background: var(--color-amber-deep, #d3860f); box-shadow: 0 0 32px 4px rgba(242, 169, 59, 0.55); } .ds-btn-amber:focus-visible { outline: 3px solid var(--color-teal, #144c53); outline-offset: 3px; }"
+    },
+    {
+      "name": "Activity Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "Downloadable activity tile with dashed coral top accent.",
+      "html": "<article class=\"ds-card\"><h3>Word Search</h3><a class=\"ds-btn-teal\" href=\"#\">Download PDF</a></article>",
+      "css": ".ds-card { background: var(--color-cream-soft, #fffdf9); border-radius: 18px; box-shadow: 0 4px 16px -6px rgba(20, 76, 83, 0.18); padding: 1.75rem; border-top: 3px dashed var(--color-coral, #ef6f63); text-align: center; } .ds-card h3 { font-family: var(--font-display, Fredoka, sans-serif); color: var(--color-teal, #144c53); margin: 0 0 0.9rem; font-size: 1.05rem; }"
+    },
+    {
+      "name": "Resource Card",
+      "kind": "card",
+      "refersTo": "card",
+      "description": "External resource link card; same dashed top language as activities.",
+      "html": "<a class=\"ds-resource\" href=\"#\" target=\"_blank\" rel=\"noreferrer noopener\"><h2>Reading Rockets</h2><span class=\"ds-resource-label\">Visit site →</span></a>",
+      "css": ".ds-resource { display: flex; flex-direction: column; justify-content: space-between; gap: 1rem; text-decoration: none; color: inherit; background: var(--color-cream-soft, #fffdf9); border-radius: 18px; box-shadow: 0 4px 16px -6px rgba(20, 76, 83, 0.18); padding: 1.75rem; border-top: 3px dashed var(--color-coral, #ef6f63); transition: transform 0.15s ease, box-shadow 0.15s ease; } .ds-resource:hover { transform: translateY(-3px); box-shadow: 0 10px 30px -12px rgba(20, 76, 83, 0.25); } .ds-resource h2 { margin: 0; font-family: var(--font-display, Fredoka, sans-serif); font-size: 1.2rem; color: var(--color-teal, #144c53); } .ds-resource-label { font-family: var(--font-display, Fredoka, sans-serif); font-weight: 600; color: var(--color-coral-ink, #b8453c); } .ds-resource:focus-visible { outline: 3px solid var(--color-teal, #144c53); outline-offset: 3px; }"
+    },
+    {
+      "name": "Teal Night Section",
+      "kind": "custom",
+      "refersTo": "section-teal",
+      "description": "Night band with optional firefly field.",
+      "html": "<section class=\"ds-night\"><div class=\"ds-night-inner\"><h2>Keep Up With Rusty</h2></div></section>",
+      "css": ".ds-night { background: linear-gradient(180deg, var(--color-teal, #144c53) 0%, var(--color-teal-deep, #0c3339) 100%); color: var(--color-cream-soft, #fffdf9); padding: clamp(3rem, 7vw, 5.5rem) 1.5rem; position: relative; overflow: hidden; } .ds-night-inner { position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; text-align: center; } .ds-night h2 { font-family: var(--font-display, Fredoka, sans-serif); color: var(--color-white, #fff); margin: 0 0 0.6em; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Firefly Jar",
+    "overview": "The site feels like carrying a jar of fireflies through a New York night — deep teal night bands, cream daylight pages, and soft amber points that echo Rusty and Squeaks’ glowing jar. Book artwork leads; UI stays supportive and rounded for kids without talking down to the adults who buy, download, and teach.",
+    "keyCharacteristics": [
+      "Book cover and character art as authority",
+      "Teal night sections with decorative fireflies",
+      "Cream pages with dashed coral card accents",
+      "Fredoka + Nunito Sans + Caveat",
+      "Pill buttons and soft teal-tinted shadows"
+    ],
+    "rules": [
+      { "name": "The Glow-Not-Paint Rule", "body": "Amber is light in the dark — fireflies, focus on teal, warm CTAs — not a blanket brand wash.", "section": "colors" },
+      { "name": "The Bright-Is-Decoration Rule", "body": "Raw coral and slate are for accents; text uses coral-ink / slate-ink / ink / teal.", "section": "colors" }
+    ],
+    "dos": [
+      "Do lead with real book and character art",
+      "Do keep free activities and resources easy to find",
+      "Do use fireflies only on teal night bands",
+      "Do name download controls with the activity title for assistive tech"
+    ],
+    "donts": [
+      "Don't invent brand art, testimonials, or series titles",
+      "Don't use thick colored left borders on cards",
+      "Don't put bright coral/slate on body copy",
+      "Don't globally nuke transitions under prefers-reduced-motion",
+      "Don't build a dark theme unless product asks for it"
+    ]
+  }
+}

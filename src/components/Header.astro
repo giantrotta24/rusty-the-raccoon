@@ -155,8 +155,10 @@ const linkFor = (item: (typeof navItems)[number]) => {
   }
 
   .site-nav a {
-    display: block;
-    padding: 0.5em 0.9em;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0.55em 0.95em;
     border-radius: 999px;
     text-decoration: none;
     color: var(--color-teal);
@@ -185,6 +187,7 @@ const linkFor = (item: (typeof navItems)[number]) => {
     align-items: center;
     gap: 0.5rem;
     cursor: pointer;
+    min-height: 44px;
     padding: 0.6rem 0.9rem;
     border-radius: 999px;
     color: var(--color-teal);

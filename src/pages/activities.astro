@@ -19,56 +19,67 @@ const activities = [
     title: 'Pin the Tail on Squeaks',
     image: pinTheTail,
     pdf: '/activities/pin-the-tail-on-squeaks.pdf',
+    sizeLabel: '870 KB',
   },
   {
     title: 'Pin the Tail on Squeaks (Tail Cut out)',
     image: pinTailCutout,
     pdf: '/activities/pin-the-tail-on-squeaks-tail-cut-out.pdf',
+    sizeLabel: '820 KB',
   },
   {
     title: 'Color Rusty & Squeaks',
     image: colorRustySqueaks,
     pdf: '/activities/color-rusty-squeaks.pdf',
+    sizeLabel: '980 KB',
   },
   {
     title: 'Color your Mushroom',
     image: colorMushroom,
     pdf: '/activities/color-your-mushroom.pdf',
+    sizeLabel: '1.3 MB',
   },
   {
     title: 'Word Search',
     image: wordSearch,
     pdf: '/activities/word-search.pdf',
+    sizeLabel: '1.4 MB',
   },
   {
     title: "What's Under the Water?",
     image: underTheWater,
     pdf: '/activities/what-s-under-the-water.pdf',
+    sizeLabel: '1.6 MB',
   },
   {
     title: 'Spot the Difference',
     image: spotDifference,
     pdf: '/activities/spot-the-difference.pdf',
+    sizeLabel: '3.3 MB',
   },
   {
     title: "Draw What Vegetables are in Mom's Garden",
     image: drawVegetables,
     pdf: '/activities/draw-what-vegetables-are-in-mom-s-garden.pdf',
+    sizeLabel: '1.1 MB',
   },
   {
     title: 'Help Rusty Find His Jar of FireFlies',
     image: jarOfFireflies,
     pdf: '/activities/help-rusty-find-his-jar-of-fireflies.pdf',
+    sizeLabel: '890 KB',
   },
   {
     title: 'Can you Match the Vocabulary Word to Its Definition?',
     image: vocabMatch,
     pdf: '/activities/can-you-match-the-vocabulary-word-to-its-definition.pdf',
+    sizeLabel: '1.0 MB',
   },
   {
     title: 'Can you Match the Vocabulary Word to Its Definition? (Part 2)',
     image: vocabMatchPart2,
     pdf: '/activities/can-you-match-the-vocabulary-word-to-its-definition-part-2.pdf',
+    sizeLabel: '1.1 MB',
   },
 ];
 ---
@@ -100,8 +111,14 @@ const activities = [
                 <Image src={activity.image} alt={`${activity.title} — activity preview`} width={340} height={340} />
               </div>
               <h3>{activity.title}</h3>
-              <a class="btn btn-teal" href={activity.pdf} download>
+              <a
+                class="btn btn-teal"
+                href={activity.pdf}
+                download
+                aria-label={`Download PDF: ${activity.title} (${activity.sizeLabel})`}
+              >
                 Download PDF
+                <span class="pdf-size" aria-hidden="true">{activity.sizeLabel}</span>
               </a>
             </article>
           ))
@@ -163,5 +180,18 @@ const activities = [
   .activity-card h3 {
     font-size: 1.05rem;
     flex-grow: 1;
+  }
+
+  .activity-card .btn {
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.35em 0.65em;
+  }
+
+  .pdf-size {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 0.8em;
+    opacity: 0.85;
   }
 </style>

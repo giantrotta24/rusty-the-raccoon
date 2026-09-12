@@ -28,7 +28,10 @@
   --color-amber: #f2a93b;
   --color-amber-deep: #d3860f;
   --color-coral: #ef6f63;
+  /* Text-safe coral/slate: decorative accents stay bright; body/labels use these. */
+  --color-coral-ink: #b8453c;
   --color-slate: #66759a;
+  --color-slate-ink: #4a5670;
   --color-ink: #1e2e30;
   --color-white: #ffffff;
 
@@ -60,12 +63,12 @@ html {
   html {
     scroll-behavior: auto;
   }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+
+  /* Kill decorative motion only — keep short interactive transitions. */
+  .firefly,
+  .firefly-field .firefly {
+    animation: none !important;
+    opacity: 0.7;
   }
 }
 
@@ -152,10 +155,18 @@ img {
 
 a:focus-visible,
 button:focus-visible,
+summary:focus-visible,
 [tabindex]:focus-visible {
-  outline: 3px solid var(--color-amber);
+  outline: 3px solid var(--color-teal);
   outline-offset: 3px;
   border-radius: 4px;
+}
+
+.section-teal a:focus-visible,
+.section-teal button:focus-visible,
+.section-teal summary:focus-visible,
+.section-teal [tabindex]:focus-visible {
+  outline-color: var(--color-amber);
 }
 
 .wrap {
@@ -193,7 +204,7 @@ button:focus-visible,
   letter-spacing: 0.06em;
   text-transform: uppercase;
   font-size: 0.85rem;
-  color: var(--color-coral);
+  color: var(--color-coral-ink);
   margin-bottom: 0.75rem;
 }
 
